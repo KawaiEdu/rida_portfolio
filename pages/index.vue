@@ -680,10 +680,30 @@ const submitContactForm = async () => {
       contactNotification.value.show = false
     }, 6000)
   } catch (error) {
+    // Fallback to WhatsApp for static deployment!
+    const waNumber = '6281250080809' // Default fallback phone number if not configured
+    const rawPhone = settings.value?.contact_phone || waNumber
+    let cleanPhone = rawPhone.replace(/[^0-9]/g, '')
+    if (cleanPhone.startsWith('0')) {
+      cleanPhone = '62' + cleanPhone.slice(1)
+    }
+    
+    const text = `Halo Ibu Rida,\n\nSaya *${contactForm.value.name}* (${contactForm.value.email}) ingin berkonsultasi mengenai:\n\n*Topik:* ${contactForm.value.topic}\n*Pesan:* ${contactForm.value.message}`
+    const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(text)}`
+    
+    window.open(waUrl, '_blank')
+    
     contactNotification.value = {
       show: true,
-      message: 'Gagal mengirimkan korespondensi. Silakan periksa kembali isian formulir Anda.',
-      type: 'error'
+      message: 'Membuka WhatsApp untuk mengirim pesan secara langsung...',
+      type: 'success'
+    }
+    contactForm.value = {
+      name: '',
+      email: '',
+      institution: '',
+      topic: '',
+      message: ''
     }
     setTimeout(() => {
       contactNotification.value.show = false

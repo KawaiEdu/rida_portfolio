@@ -1,4 +1,7 @@
 import { join } from 'path'
+import { createRequire } from 'node:module'
+
+const require = createRequire(join(process.cwd(), 'server/utils/db.ts'))
 
 let dbInstance: any = null
 
