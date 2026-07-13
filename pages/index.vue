@@ -21,7 +21,7 @@
         <!-- Navigation Menu -->
         <nav :class="['header-nav-links', { 'mobile-active': isMobileMenuOpen }]">
           <a href="#about" @click="closeMobileMenu">Tentang Saya</a>
-          <a href="#services" @click="closeMobileMenu">Layanan</a>
+          <a href="#services" @click="closeMobileMenu">Bidang Fokus</a>
           <a href="#blog" @click="closeMobileMenu">Publikasi Karya</a>
           <a href="#contact" @click="closeMobileMenu">Kontak</a>
           <!-- Mobile Only CTA -->
@@ -66,7 +66,7 @@
           
           <!-- Buttons -->
           <div class="hero-actions-light">
-            <a href="#services" class="btn-light-primary">Lihat layanan saya</a>
+            <a href="#services" class="btn-light-primary">Lihat bidang fokus saya</a>
             <a href="#blog" class="btn-light-secondary">Baca publikasi</a>
           </div>
         </div>
@@ -153,9 +153,9 @@
       <div class="section-container-doc">
         <!-- Section Header -->
         <div class="services-section-header-clean">
-          <div class="services-num-label-clean">02 — Layanan</div>
-          <h2 class="services-title-serif-clean">{{ settings?.services_title || 'Tujuh layanan, tiga ranah kerja.' }}</h2>
-          <p class="services-intro-desc-clean">{{ settings?.services_subtitle || 'Dari ruang audit hingga ruang kelas — setiap layanan berangkat dari kombinasi kompetensi akademik dan jam terbang praktik.' }}</p>
+          <div class="services-num-label-clean">02 — Bidang Fokus</div>
+          <h2 class="services-title-serif-clean">{{ settings?.services_title || 'Tujuh bidang fokus, tiga ranah kerja.' }}</h2>
+          <p class="services-intro-desc-clean">{{ settings?.services_subtitle || 'Dari ruang audit hingga ruang kelas — setiap bidang fokus berangkat dari kombinasi kompetensi akademik dan jam terbang praktik.' }}</p>
         </div>
 
         <!-- Loop through our predefined categories in order -->
@@ -734,7 +734,7 @@ html {
 body {
   font-family: 'Inter', sans-serif;
   color: #3d3d3d;
-  background-color: #f7f4ed; /* Ivory paper */
+  background-color: #FCF9EA; /* Warm beige paper */
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -747,7 +747,8 @@ a {
 :root {
   --color-ink-dark: #0f2b1d; /* Hijau tinta gelap */
   --color-sage-secondary: #2c4a3b; /* Hijau sage sekunder */
-  --color-paper-light: #f7f4ed; /* Kertas gading */
+  --color-paper-light: #FCF9EA; /* Kertas gading */
+  --color-bg-light: #FCF9EA; /* Latar belakang utama seksi */
   --color-bronze-accent: #b8860b; /* Kuning perunggu / segel resmi */
   --color-text-body: #3d3d3d;
   --font-serif: 'Lora', serif;
@@ -1147,7 +1148,7 @@ a {
 /* Stats Bar */
 .hero-stats-bar-light {
   width: 100%;
-  background-color: #f2ede4; /* Warm ivory/cream background from the user's image */
+  background-color: #FFF9D2; /* Warm yellow highlight */
   border-top: 1.5px solid rgba(184, 134, 11, 0.35); /* Elegant gold/bronze top border */
   border-bottom: 1.5px solid rgba(184, 134, 11, 0.35); /* Elegant gold/bronze bottom border */
   padding: 2.2rem 2rem;
