@@ -50,7 +50,7 @@
           <!-- Tagline with gold line and uppercase text -->
           <div class="hero-tag-light">
             <span class="gold-line">—</span>
-            <span class="tag-text">{{ settings?.hero_tag || 'AKADEMISI · AUDITOR · KONSULTAN' }}</span>
+            <span class="tag-text">{{ settings?.hero_credentials || settings?.hero_tag || 'AKADEMISI · AUDITOR · KONSULTAN' }}</span>
           </div>
           
           <!-- Headline -->
@@ -115,7 +115,7 @@
       <div class="section-container-doc">
         <!-- Section Header -->
         <div class="section-header-about-clean">
-          <div class="about-num-label">01 — Tentang Saya</div>
+          <div class="about-num-label">01 — {{ settings?.about_badge || 'Tentang Saya' }}</div>
           <h2 class="about-title-serif">{{ settings?.about_title || 'Satu kaki di ruang kelas, satu kaki di lapangan.' }}</h2>
         </div>
 
@@ -249,7 +249,24 @@
             <!-- Note Box -->
             <div class="pub-clean-note-box">
               <div class="pub-note-accent-line"></div>
-              <p class="pub-note-text">{{ settings?.publications_note || 'Catatan: tautan Google Scholar, Scopus, SINTA, dan/atau ORCID sebaiknya ditambahkan di sini agar pengunjung dapat menelusuri publikasi lengkap secara langsung.' }}</p>
+              <div class="pub-note-content-wrap">
+                <p class="pub-note-text">{{ settings?.publications_note || 'Catatan: tautan Google Scholar, Scopus, SINTA, dan/atau ORCID sebaiknya ditambahkan di sini agar pengunjung dapat menelusuri publikasi lengkap secara langsung.' }}</p>
+                <!-- Academic Profiles Badges -->
+                <div class="academic-profile-links-wrap" v-if="settings?.scholar_id || settings?.sinta_id || settings?.scopus_id || settings?.orcid_id">
+                  <a v-if="settings?.scholar_id" :href="resolveAcademicLink(settings.scholar_id, '')" target="_blank" class="academic-badge-link scholar-badge">
+                    <span class="badge-icon">🎓</span> Google Scholar
+                  </a>
+                  <a v-if="settings?.sinta_id" :href="resolveAcademicLink(settings.sinta_id, 'https://sinta.kemdikbud.go.id/authors/detail?id=')" target="_blank" class="academic-badge-link sinta-badge">
+                    <span class="badge-icon">🇮🇩</span> SINTA ID
+                  </a>
+                  <a v-if="settings?.scopus_id" :href="resolveAcademicLink(settings.scopus_id, 'https://www.scopus.com/authid/detail.uri?authorId=')" target="_blank" class="academic-badge-link scopus-badge">
+                    <span class="badge-icon">🔍</span> Scopus ID
+                  </a>
+                  <a v-if="settings?.orcid_id" :href="resolveAcademicLink(settings.orcid_id, 'https://orcid.org/')" target="_blank" class="academic-badge-link orcid-badge">
+                    <span class="badge-icon">🆔</span> ORCID
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -258,7 +275,7 @@
             <div class="pub-dark-stats-box">
               <div class="pub-stat-number">{{ settings?.publications_citation_num || '800+' }}</div>
               <div class="pub-stat-label">{{ settings?.publications_citation_label || 'Sitasi karya ilmiah' }}</div>
-              <p class="pub-stat-desc">{{ settings?.publications_citation_desc || 'Karya-karya ilmiah saya telah disitasi lebih dari 800 kali oleh peneliti lain — indikator kontribusi nyata bagi perkembangan ilmu akuntansi sektor publik dan audit, baik di tingkat nasional maupun internasional.' }}</p>
+              <p class="pub-stat-desc">{{ settings?.citation_text || settings?.publications_citation_desc || 'Karya-karya ilmiah saya telah disitasi lebih dari 800 kali oleh peneliti lain — indikator kontribusi nyata bagi perkembangan ilmu akuntansi sektor publik dan audit, baik di tingkat nasional maupun internasional.' }}</p>
             </div>
           </div>
         </div>
@@ -512,6 +529,13 @@ if (process.client) {
   onUnmounted(() => {
     window.removeEventListener('scroll', handleScroll)
   })
+}
+
+const resolveAcademicLink = (val, prefix) => {
+  if (!val) return '#'
+  const cleanVal = val.trim()
+  if (cleanVal.startsWith('http://') || cleanVal.startsWith('https://')) return cleanVal
+  return prefix + cleanVal
 }
 
 const formattedHeroHeadline = computed(() => {
@@ -1814,8 +1838,50 @@ a {
   font-size: 0.92rem;
   line-height: 1.6;
   color: var(--color-text-body);
-  padding: 1.25rem 1.5rem;
+  padding: 0;
   margin: 0;
+}
+
+.pub-note-content-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1.25rem 1.5rem;
+  width: 100%;
+}
+
+.academic-profile-links-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.academic-badge-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--color-paper-light);
+  color: var(--color-ink-dark);
+  border: 1px solid rgba(44, 74, 59, 0.15);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 20px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.academic-badge-link:hover {
+  background-color: var(--color-sage-secondary);
+  color: #ffffff;
+  border-color: var(--color-sage-secondary);
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 10px rgba(44, 74, 59, 0.1);
+}
+
+.academic-badge-link .badge-icon {
+  font-size: 0.95rem;
 }
 
 .pub-right-stats-col {
