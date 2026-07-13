@@ -74,7 +74,7 @@
         <!-- Right Column: Notary Seal Element -->
         <div class="hero-seal-wrapper-light">
           <div class="seal-large-doc">
-            <img v-if="settings?.hero_seal_image_url" :src="settings.hero_seal_image_url" class="seal-large-doc-img" alt="Seal Photo" />
+            <img v-if="settings?.hero_image_url || settings?.hero_seal_image_url" :src="settings?.hero_image_url || settings?.hero_seal_image_url" class="seal-large-doc-img" alt="Hero Photo" />
             <div v-else class="seal-inner-circle-double">
               <span class="seal-initials-text">{{ settings?.seal_initials || 'RPS' }}</span>
               <div class="seal-gold-divider"></div>
@@ -120,6 +120,26 @@
         </div>
 
         <div class="about-two-col-layout">
+          <!-- Portrait Photo with Frame -->
+          <div class="about-image-wrapper-doc" v-if="settings?.about_image_url">
+            <div class="photo-attachment-frame">
+              <img :src="settings.about_image_url" class="about-img-doc" alt="Dr. Rida Perwita Sari" />
+              <!-- Notary Stamp / Official Seal (Dynamic SVG Element overlay) -->
+              <svg class="seal-of-credentials" viewBox="0 0 100 100" fill="currentColor">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2" />
+                <circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" stroke-width="1" />
+                <path id="seal-curve" d="M 18 50 A 32 32 0 1 1 82 50" fill="none" stroke="transparent" />
+                <text font-size="7" font-weight="bold" fill="currentColor">
+                  <textPath href="#seal-curve" startOffset="50%" text-anchor="middle">
+                    * DR. RIDA PERWITA SARI *
+                  </textPath>
+                </text>
+                <text x="50" y="52" font-size="8" font-weight="bold" fill="currentColor" text-anchor="middle">VERITAS</text>
+                <text x="50" y="62" font-size="5" fill="currentColor" text-anchor="middle">OFFICIAL SEAL</text>
+              </svg>
+            </div>
+          </div>
+
           <!-- Left Column: Biography & Degrees -->
           <div class="about-left-bio-col">
             <div class="about-bio-paragraphs">
@@ -1548,7 +1568,7 @@ a {
 
 .about-two-col-layout {
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
+  grid-template-columns: 280px 1.25fr 1fr;
   gap: 5rem;
   align-items: start;
 }
