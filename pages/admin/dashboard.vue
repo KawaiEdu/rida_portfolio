@@ -1027,6 +1027,8 @@ onMounted(async () => {
 /* Sidebar Styling */
 .sidebar {
   width: 280px;
+  min-width: 280px;
+  flex-shrink: 0;
   background-color: #1e201e;
   border-right: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
