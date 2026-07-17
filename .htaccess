@@ -1,0 +1,20 @@
+# ----------------------------------------------------------------------
+# Htaccess file for Nuxt 3 Static Site with PHP API Backend
+# Place this file inside your domain's public_html directory
+# ----------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 1. Route all /api/* requests to the PHP API handler
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^api/(.*)$ api/index.php?route=$1 [QSA,L]
+
+    # 2. Serve static HTML/JS/CSS files directly if they exist
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # 3. Handle Nuxt HTML routing fallback (HTML5 History Mode)
+    RewriteRule ^(.*)$ index.html [L]
+</IfModule>

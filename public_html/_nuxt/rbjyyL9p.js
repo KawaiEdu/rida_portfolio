@@ -1,1 +1,0 @@
-import{Y as n,Z as o,n as s}from"./Bi1YvRrA.js";import{u as i}from"./wZNA8J25.js";function d(a){return{}}const l=n(async(a,c)=>{let e,t;const{data:r,error:u}=([e,t]=o(()=>i("/api/auth/me",{headers:d()},"$3CmYt0hbgG")),e=await e,t(),e);if(u.value||!r.value?.authenticated)return s("/admin/login")});export{l as default};
