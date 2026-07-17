@@ -1,7 +1,0 @@
-node_modules
-.nuxt
-.output
-sqlite.db
-sqlite.db-shm
-sqlite.db-wal
-.git

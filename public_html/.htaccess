@@ -1,0 +1,17 @@
+# ----------------------------------------------------------------------
+# Htaccess file for Nuxt 3 on Hostinger Shared Hosting
+# Place this file inside your domain's public_html directory
+# ----------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 1. Serve static files directly from public_html if they exist
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # 2. Rewrite all other dynamic requests (pages, API, admin) to the Node.js port.
+    # Note: Replace '3000' with the port allocated by Hostinger Node.js Dashboard.
+    RewriteRule ^(.*)$ http://127.0.0.1:3000/$1 [P,L]
+</IfModule>
