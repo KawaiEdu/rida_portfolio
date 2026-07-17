@@ -1192,7 +1192,7 @@ a {
 /* Stats Bar */
 .hero-stats-bar-light {
   width: 100%;
-  background-color: #FFE5BF; /* Cream yellow highlight */
+  background-color: #FFF2DB; /* Cream yellow highlight */
   border-top: 1.5px solid rgba(184, 134, 11, 0.35); /* Elegant gold/bronze top border */
   border-bottom: 1.5px solid rgba(184, 134, 11, 0.35); /* Elegant gold/bronze bottom border */
   padding: 2.2rem 2rem;
