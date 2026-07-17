@@ -778,7 +778,7 @@ html {
 body {
   font-family: 'Inter', sans-serif;
   color: #3d3d3d;
-  background-color: #FFF9D2; /* Warm beige paper */
+  background-color: #FFFAF3; /* Cream ivory paper */
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -791,8 +791,8 @@ a {
 :root {
   --color-ink-dark: #0f2b1d; /* Hijau tinta gelap */
   --color-sage-secondary: #2c4a3b; /* Hijau sage sekunder */
-  --color-paper-light: #FFF9D2; /* Kertas gading */
-  --color-bg-light: #FFF9D2; /* Latar belakang utama seksi */
+  --color-paper-light: #FFFAF3; /* Kertas gading ivory */
+  --color-bg-light: #FFFAF3; /* Latar belakang utama */
   --color-bronze-accent: #b8860b; /* Kuning perunggu / segel resmi */
   --color-text-body: #3d3d3d;
   --font-serif: 'Lora', serif;
@@ -877,7 +877,7 @@ a {
 }
 
 .doc-header-main.scrolled {
-  background-color: rgba(255, 235, 204, 0.85);
+  background-color: rgba(255, 250, 243, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 0.8rem 4rem;
@@ -1192,7 +1192,7 @@ a {
 /* Stats Bar */
 .hero-stats-bar-light {
   width: 100%;
-  background-color: #FFEBCC; /* Warm yellow highlight */
+  background-color: #FFE5BF; /* Cream yellow highlight */
   border-top: 1.5px solid rgba(184, 134, 11, 0.35); /* Elegant gold/bronze top border */
   border-bottom: 1.5px solid rgba(184, 134, 11, 0.35); /* Elegant gold/bronze bottom border */
   padding: 2.2rem 2rem;
